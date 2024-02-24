@@ -1,5 +1,6 @@
 package application;
 
+import model.Book;
 import view.FormRegisterBook;
 
 public class Program {
@@ -9,7 +10,10 @@ public class Program {
 		FormRegisterBook frb = new FormRegisterBook();
 		
 		frb.setVisible(true);
-
+		
+		Book book = new Book(1, "Anne frank", "anne", "biografia");
+		System.out.println(book);
+		
 	}
 
 }
