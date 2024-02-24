@@ -30,7 +30,7 @@ public class FormRegisterBook extends JFrame{
 	private void configurateScreen() {
 		setLayout(null);
 		setTitle("Cadastrar Livro");
-		setSize(300, 300);
+		setSize(300, 400);
 		setResizable(false);
 		setLocationRelativeTo(null);
 	}
@@ -41,7 +41,7 @@ public class FormRegisterBook extends JFrame{
 		jNameAuthor.setBounds(20, 75, 100, 20);
 		jTextNameAuthor.setBounds(20, 95, 240, 25);
 		jDescriptionBook.setBounds(20, 130, 120, 20);
-		jTextDescriptionBook.setBounds(20, 153, 240, 200);
+		jTextDescriptionBook.setBounds(20, 153, 240, 100);
 		jTextDescriptionBook.setLineWrap(true);
 	}
 	
