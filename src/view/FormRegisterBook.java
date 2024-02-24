@@ -1,5 +1,6 @@
 package view;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
@@ -15,6 +16,8 @@ public class FormRegisterBook extends JFrame{
 	private JTextField jTextNameAuthor = new JTextField();
 	private JLabel jDescriptionBook = new JLabel("Descrição do livro");
 	private JTextArea jTextDescriptionBook = new JTextArea();
+	private JButton consultBooks = new JButton("Mostar livros");
+	private JButton saveBook = new JButton("Salvar");
 	
 	
 	public FormRegisterBook() {
@@ -43,6 +46,8 @@ public class FormRegisterBook extends JFrame{
 		jDescriptionBook.setBounds(20, 130, 120, 20);
 		jTextDescriptionBook.setBounds(20, 153, 240, 100);
 		jTextDescriptionBook.setLineWrap(true);
+		consultBooks.setBounds(20, 275, 110, 30);
+		saveBook.setBounds(160, 275, 100, 30);
 	}
 	
 	private void addCompenentsInScreen() {
@@ -52,5 +57,7 @@ public class FormRegisterBook extends JFrame{
 		getContentPane().add(jTextNameAuthor);
 		getContentPane().add(jDescriptionBook);
 		getContentPane().add(jTextDescriptionBook);
+		getContentPane().add(consultBooks);
+		getContentPane().add(saveBook); 
 	}
 }
