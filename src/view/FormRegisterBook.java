@@ -1,10 +1,18 @@
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import model.Book;
+import model.dao.BookDao;
+import model.dao.FactoryDao;
 
 public class FormRegisterBook extends JFrame{
 
@@ -24,6 +32,7 @@ public class FormRegisterBook extends JFrame{
 		init();
 		configurateComponents();
 		addCompenentsInScreen();
+		consultAllBooks();
 	}
 	
 	private void init() {
@@ -59,5 +68,20 @@ public class FormRegisterBook extends JFrame{
 		getContentPane().add(jTextDescriptionBook);
 		getContentPane().add(consultBooks);
 		getContentPane().add(saveBook); 
+	}
+	
+	private void consultAllBooks() {
+		consultBooks.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				BookDao dao = FactoryDao.createBookDao();
+				
+				List<Book> list = dao.findAll();
+				System.out.println(list);
+				
+			}
+		});
 	}
 }
