@@ -2,11 +2,11 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -32,6 +32,7 @@ public class FormRegisterBook extends JFrame {
 		configurateComponents();
 		addCompenentsInScreen();
 		consultAllBooks();
+		insertBook();
 	}
 
 	private void init() {
@@ -45,6 +46,7 @@ public class FormRegisterBook extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
 	private void configurateComponents() {
@@ -76,11 +78,42 @@ public class FormRegisterBook extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				DisplayingBooks books = new DisplayingBooks();
+				new DisplayingBooks();
 
 				dispose();
+				
 
 			}
 		});
+	}
+	
+	private void insertBook() {
+		saveBook.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				BookDao dao = FactoryDao.createBookDao();
+				
+				String nameBook = jTextNameBook.getText();
+				String nameAuthor = jTextNameAuthor.getText();
+				String description = jTextDescriptionBook.getText();
+				
+				if (checksfields(nameBook, nameAuthor, description)) {
+					Book book = new Book(null, nameBook, nameAuthor, description);
+					dao.insert(book);
+				}
+				else {
+					JOptionPane.showMessageDialog(rootPane, "Algum campo está vázio");
+				}
+			
+				
+			}
+		});
+	}
+	
+	private boolean checksfields(String name, String nameBook, String description) {
+		if (name.equals("") || nameBook.equals("")|| description.equals("")) return false;
+		return true;
 	}
 }

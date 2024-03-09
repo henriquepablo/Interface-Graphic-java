@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +24,44 @@ public class BookDaoJDBC implements BookDao{
 	
 	@Override
 	public void insert(Book book) {
-		// TODO Auto-generated method stub
 		
+		PreparedStatement st = null;
+		
+		try {
+			st = conn.prepareStatement(
+					"INSERT INTO livros "
+					+ "(nameBook, nameAuthor, descriptionBook) "
+					+ "VALUES "
+					+ "(?, ?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
+			
+			st.setString(1, book.getNameBook());
+			st.setString(2, book.getNameAuthor());
+			st.setString(3, book.getDescription());
+			
+			int rowsAffected = st.executeUpdate();
+			
+			if (rowsAffected > 0) {
+				ResultSet rs = st.getGeneratedKeys();
+				if(rs.next()) {
+					int id = rs.getInt(1);
+					book.setId(id);
+				}
+				Db.closeResultSet(rs);
+			}
+			else {
+				throw new DbException("Erro inesperado, nenhuma linha alterada");
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			Db.closeStatement(st);
+		}
+			
 	}
+	
 
 	@Override
 	public void update(Book book) {
