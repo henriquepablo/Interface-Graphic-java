@@ -14,39 +14,39 @@ import model.Book;
 import model.dao.BookDao;
 import model.dao.FactoryDao;
 
-public class FormRegisterBook extends JFrame{
+public class FormRegisterBook extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private JLabel jNameBook = new JLabel("Nome do livro");
-	private JTextField jTextNameBook = new JTextField(); 
+	private JTextField jTextNameBook = new JTextField();
 	private JLabel jNameAuthor = new JLabel("Nome do autor");
 	private JTextField jTextNameAuthor = new JTextField();
 	private JLabel jDescriptionBook = new JLabel("Descrição do livro");
 	private JTextArea jTextDescriptionBook = new JTextArea();
 	private JButton consultBooks = new JButton("Mostar livros");
 	private JButton saveBook = new JButton("Salvar");
-	
-	
+
 	public FormRegisterBook() {
 		init();
 		configurateComponents();
 		addCompenentsInScreen();
 		consultAllBooks();
 	}
-	
+
 	private void init() {
 		configurateScreen();
 	}
-	
+
 	private void configurateScreen() {
 		setLayout(null);
 		setTitle("Cadastrar Livro");
 		setSize(300, 400);
 		setResizable(false);
 		setLocationRelativeTo(null);
+		setVisible(true);
 	}
-	
+
 	private void configurateComponents() {
 		jNameBook.setBounds(20, 20, 80, 20);
 		jTextNameBook.setBounds(20, 40, 240, 25);
@@ -58,7 +58,7 @@ public class FormRegisterBook extends JFrame{
 		consultBooks.setBounds(20, 275, 110, 30);
 		saveBook.setBounds(160, 275, 100, 30);
 	}
-	
+
 	private void addCompenentsInScreen() {
 		getContentPane().add(jNameBook);
 		getContentPane().add(jTextNameBook);
@@ -67,20 +67,19 @@ public class FormRegisterBook extends JFrame{
 		getContentPane().add(jDescriptionBook);
 		getContentPane().add(jTextDescriptionBook);
 		getContentPane().add(consultBooks);
-		getContentPane().add(saveBook); 
+		getContentPane().add(saveBook);
 	}
-	
+
 	private void consultAllBooks() {
 		consultBooks.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				BookDao dao = FactoryDao.createBookDao();
-				
-				List<Book> list = dao.findAll();
-				System.out.println(list);
-				
+
+				DisplayingBooks books = new DisplayingBooks();
+
+				dispose();
+
 			}
 		});
 	}

@@ -8,8 +8,7 @@ public class Program {
 		
 		FormRegisterBook frb = new FormRegisterBook();
 		
-		frb.setVisible(true);
-		frb.setDefaultCloseOperation(frb.EXIT_ON_CLOSE);
+		
 	}
 
 }
