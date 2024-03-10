@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -26,6 +27,8 @@ public class FormRegisterBook extends JFrame {
 	private JTextArea jTextDescriptionBook = new JTextArea();
 	private JButton consultBooks = new JButton("Mostar livros");
 	private JButton saveBook = new JButton("Salvar");
+	private JScrollPane scroll = new JScrollPane(jTextDescriptionBook);
+
 
 	public FormRegisterBook() {
 		init();
@@ -55,10 +58,11 @@ public class FormRegisterBook extends JFrame {
 		jNameAuthor.setBounds(20, 75, 100, 20);
 		jTextNameAuthor.setBounds(20, 95, 240, 25);
 		jDescriptionBook.setBounds(20, 130, 120, 20);
-		jTextDescriptionBook.setBounds(20, 153, 240, 100);
 		jTextDescriptionBook.setLineWrap(true);
 		consultBooks.setBounds(20, 275, 110, 30);
 		saveBook.setBounds(160, 275, 100, 30);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scroll.setBounds(20, 153, 240, 100);
 	}
 
 	private void addCompenentsInScreen() {
@@ -67,9 +71,10 @@ public class FormRegisterBook extends JFrame {
 		getContentPane().add(jNameAuthor);
 		getContentPane().add(jTextNameAuthor);
 		getContentPane().add(jDescriptionBook);
-		getContentPane().add(jTextDescriptionBook);
 		getContentPane().add(consultBooks);
 		getContentPane().add(saveBook);
+		getContentPane().add(scroll);
+		
 	}
 
 	private void consultAllBooks() {
@@ -102,6 +107,7 @@ public class FormRegisterBook extends JFrame {
 				if (checksfields(nameBook, nameAuthor, description)) {
 					Book book = new Book(null, nameBook, nameAuthor, description);
 					dao.insert(book);
+					JOptionPane.showMessageDialog(rootPane, "Livro cadastrado");
 				}
 				else {
 					JOptionPane.showMessageDialog(rootPane, "Algum campo está vázio");

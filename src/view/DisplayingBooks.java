@@ -1,13 +1,11 @@
 package view;
 
 import java.awt.Label;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
-import model.Book;
 import model.dao.BookDao;
 import model.dao.FactoryDao;
 
@@ -30,8 +28,7 @@ public class DisplayingBooks extends JFrame{
 		addCompenentsInScreen();
 		
 		BookDao dao = FactoryDao.createBookDao();
-		List<Book> list = dao.findAll();
-		System.out.println(list);
+		
 
 	}
 	
