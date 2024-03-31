@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
+import model.Book;
 import model.dao.BookDao;
 import model.dao.FactoryDao;
 
@@ -21,15 +22,14 @@ public class DisplayingBooks extends JFrame{
 	private JButton deleteBook = new JButton("Apagar ");
 	private JButton displayDescriptionyBook = new JButton("Descrição");
 	private JButton registerBook = new JButton("Cadastrar");
+	
+	private BookDao dao = FactoryDao.createBookDao();
 
 	public DisplayingBooks() {
 		init();
 		configurateComponents();
 		addCompenentsInScreen();
-		
-		BookDao dao = FactoryDao.createBookDao();
-		
-
+		writeBookInScreen();
 	}
 	
 	private void init() {
@@ -52,6 +52,7 @@ public class DisplayingBooks extends JFrame{
 		nameAuthor.setBounds(175, 15, 85, 15);
 		DescriptionBook.setBounds(20, 40, 240, 180);
 		DescriptionBook.setLineWrap(true);
+		DescriptionBook.setEditable(false);
 		editBook.setBounds(20, 240, 100, 30);
 		deleteBook.setBounds(160, 240, 100, 30);
 		displayDescriptionyBook.setBounds(20, 280, 100, 30);
@@ -68,4 +69,14 @@ public class DisplayingBooks extends JFrame{
 		getContentPane().add(displayDescriptionyBook);
 		getContentPane().add(registerBook);
 	}
+	
+	private void writeBookInScreen() {
+		for (Book book: dao.findAll()) {
+			DescriptionBook.append(String.valueOf(book.getId()).concat("          ") 
+					+ book.getNameBook().concat("          ") 
+					+ book.getNameAuthor() + "\n");
+			
+		}
+	}
+	
 }
