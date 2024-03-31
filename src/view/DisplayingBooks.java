@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -30,6 +32,7 @@ public class DisplayingBooks extends JFrame{
 		configurateComponents();
 		addCompenentsInScreen();
 		writeBookInScreen();
+		searchBookById();
 	}
 	
 	private void init() {
@@ -73,10 +76,23 @@ public class DisplayingBooks extends JFrame{
 	private void writeBookInScreen() {
 		for (Book book: dao.findAll()) {
 			DescriptionBook.append(String.valueOf(book.getId()).concat("          ") 
-					+ book.getNameBook().concat("          ") 
-					+ book.getNameAuthor() + "\n");
+			+ book.getNameBook().concat("          ") 
+			+ book.getNameAuthor() + "\n");
 			
 		}
 	}
 	
+	private void searchBookById() {
+		editBook.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				new SearchBook("edit");
+				
+				dispose();
+				
+			}
+		});
+	}
 }
