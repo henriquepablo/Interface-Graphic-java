@@ -33,6 +33,7 @@ public class DisplayingBooks extends JFrame{
 		addCompenentsInScreen();
 		writeBookInScreen();
 		searchBookById();
+		backToMainScreen();
 	}
 	
 	private void init() {
@@ -89,6 +90,19 @@ public class DisplayingBooks extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				new SearchBook("edit");
+				
+				dispose();
+				
+			}
+		});
+	}
+	
+	private void backToMainScreen() {
+		registerBook.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FormRegisterBook();
 				
 				dispose();
 				
