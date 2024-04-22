@@ -10,6 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import model.dao.BookDao;
+import model.dao.FactoryDao;
+
 public class SearchBook extends JFrame{
 
 	private static final long serialVersionUID = 1L;
@@ -82,7 +85,14 @@ public class SearchBook extends JFrame{
 				try {
 					int id = Integer.parseInt(searchBook.getText());
 					
-					System.out.println(id);
+					if (getTitle().equals("Apagar Livro")) {
+						BookDao dao = FactoryDao.createBookDao();
+						
+						dao.deleteById(id);
+						JOptionPane.showMessageDialog(rootPane, "Livro apagado");
+						dispose();
+						new DisplayingBooks();
+					}
 					
 				} catch (NumberFormatException e2) {
 					JOptionPane.showMessageDialog(rootPane, "Informe um número");
