@@ -34,6 +34,8 @@ public class DisplayingBooks extends JFrame{
 		writeBookInScreen();
 		searchBookById();
 		backToMainScreen();
+		deleteBook();
+		displayDescription();
 	}
 	
 	private void init() {
@@ -104,6 +106,32 @@ public class DisplayingBooks extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				new FormRegisterBook();
 				
+				dispose();
+				
+			}
+		});
+	}
+	
+	public void deleteBook() {
+		deleteBook.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				new SearchBook("delete");
+				dispose();
+				
+			}
+		});
+	}
+	
+	public void displayDescription() {
+		displayDescriptionyBook.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				new SearchBook("Descricao");
 				dispose();
 				
 			}
