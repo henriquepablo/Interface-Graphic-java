@@ -93,6 +93,11 @@ public class SearchBook extends JFrame{
 						dispose();
 						new DisplayingBooks();
 					}
+					else if (getTitle().equals(("Exibir descrição"))) {
+						System.out.println("Exibir descrição");
+						new DescriptionBook(id);
+						dispose();
+					}
 					
 				} catch (NumberFormatException e2) {
 					JOptionPane.showMessageDialog(rootPane, "Informe um número");
